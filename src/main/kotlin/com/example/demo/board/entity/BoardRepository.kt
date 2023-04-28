@@ -1,5 +1,14 @@
 package com.example.demo.board.entity
 
-import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Component
 
-interface BoardRepository : JpaRepository<Board, Long>
+//import org.springframework.data.jpa.repository.JpaRepository
+
+@Component
+class BoardRepository {
+    fun findAll() = listOf(Board("title", "content"))
+    fun save(toEntity: Board): Board {
+        return Board("title", "content")
+    }
+
+}
