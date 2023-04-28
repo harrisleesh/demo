@@ -1,14 +1,14 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:922140397374:task-definition/taskDefinition-demo:1",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:922140397374:task-definition/demoTask:1",
   "containerDefinitions": [
     {
       "name": "demo",
-      "image": "922140397374.dkr.ecr.ap-northeast-2.amazonaws.com/demo/demo:latest",
+      "image": "922140397374.dkr.ecr.ap-northeast-2.amazonaws.com/demo",
       "cpu": 0,
       "portMappings": [
         {
-          "name": "demo-80-tcp",
-          "containerPort": 80,
+          "name": "demo-8080-tcp",
+          "containerPort": 8080,
           "hostPort": 0,
           "protocol": "tcp",
           "appProtocol": "http"
@@ -22,14 +22,19 @@
       "ulimits": []
     }
   ],
-  "family": "taskDefinition-demo",
+  "family": "demoTask",
+  "taskRoleArn": "arn:aws:iam::922140397374:role/ecsTaskExecutionRole",
   "executionRoleArn": "arn:aws:iam::922140397374:role/ecsTaskExecutionRole",
+  "networkMode": "bridge",
   "revision": 1,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
     {
       "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
     },
     {
       "name": "ecs.capability.execution-role-ecr-pull"
@@ -46,12 +51,12 @@
     "EC2"
   ],
   "cpu": "1024",
-  "memory": "410",
+  "memory": "3072",
   "runtimePlatform": {
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2023-04-27T08:54:06.222Z",
+  "registeredAt": "2023-04-28T07:33:48.076Z",
   "registeredBy": "arn:aws:iam::922140397374:root",
   "tags": []
 }
