@@ -1,9 +1,9 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:922140397374:task-definition/demoTask:1",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:922140397374:task-definition/demo2:1",
   "containerDefinitions": [
     {
       "name": "demo",
-      "image": "922140397374.dkr.ecr.ap-northeast-2.amazonaws.com/demo",
+      "image": "922140397374.dkr.ecr.ap-northeast-2.amazonaws.com/demo:latest",
       "cpu": 0,
       "portMappings": [
         {
@@ -19,10 +19,19 @@
       "environmentFiles": [],
       "mountPoints": [],
       "volumesFrom": [],
-      "ulimits": []
+      "ulimits": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/demo2",
+          "awslogs-region": "ap-northeast-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
     }
   ],
-  "family": "demoTask",
+  "family": "demo2",
   "taskRoleArn": "arn:aws:iam::922140397374:role/ecsTaskExecutionRole",
   "executionRoleArn": "arn:aws:iam::922140397374:role/ecsTaskExecutionRole",
   "networkMode": "bridge",
@@ -31,7 +40,16 @@
   "status": "ACTIVE",
   "requiresAttributes": [
     {
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
       "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
     },
     {
       "name": "com.amazonaws.ecs.capability.task-iam-role"
@@ -41,6 +59,9 @@
     },
     {
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
     }
   ],
   "placementConstraints": [],
@@ -56,7 +77,7 @@
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2023-04-28T07:33:48.076Z",
+  "registeredAt": "2023-04-28T08:08:55.954Z",
   "registeredBy": "arn:aws:iam::922140397374:root",
   "tags": []
 }
